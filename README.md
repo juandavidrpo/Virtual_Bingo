@@ -2,7 +2,7 @@
 
 ## Notes
 ```
-- Falto realizar el frontend del bingo.
+- Falto realizar el frontend del juego de bingo.
 - Falto realizar la integración de nodejs y java.
 ```
 

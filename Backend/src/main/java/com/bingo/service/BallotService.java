@@ -11,9 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+/**
+ * Representa la clase balota servicio.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class BallotService implements IBallotService {
 
-    @Autowired // para inyectar BallotDao
+    /**
+     * Implementa los métodos de BallotDao.
+     */
+    @Autowired
     private BallotDao ballotDao;
 
     @Override

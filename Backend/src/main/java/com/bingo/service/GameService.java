@@ -10,8 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+/**
+ * Representa la clase de juego servicio.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class GameService implements IGameService {
 
+    /**
+     * Implementa los métodos de GameDao
+     */
     @Autowired // para inyectar GameDao
     private GameDao gameDao;
 

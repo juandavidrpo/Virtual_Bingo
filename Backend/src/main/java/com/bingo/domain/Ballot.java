@@ -14,6 +14,12 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "ballot")
+/**
+ * Representa la clase balota.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class Ballot implements Serializable {
 
     private static final long serialVersionUID = 1L;

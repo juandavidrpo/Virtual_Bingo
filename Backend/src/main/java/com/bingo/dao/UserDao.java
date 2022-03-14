@@ -7,7 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-
+/**
+ * Representa la interfaz del dao usuario.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public interface UserDao extends CrudRepository<User, Long> {
 
     @Modifying

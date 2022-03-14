@@ -25,6 +25,12 @@ import java.util.ArrayList;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 
+/**
+ * Representa la clase del controlador del juego.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class GameController {
 
     @Autowired
@@ -41,6 +47,10 @@ public class GameController {
 
     Game game = new Game();
 
+    /**
+     * Representa el método GET.
+     * @return información del juego.
+     */
     @GetMapping(path = "/games")
     public Response list() {
         try {
@@ -53,6 +63,11 @@ public class GameController {
         return response;
     }
 
+    /**
+     * Representa el método POST.
+     * @param game
+     * @return un juego creado.
+     */
     @PostMapping(path="/game")
     public ResponseEntity<Game> create(Game game) {
         log.info("Juego a crear: {}", game);
@@ -60,6 +75,11 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.CREATED);
     }
 
+    /**
+     * Representa el método DELETE.
+     * @param game
+     * @return el borrado de un juego.
+     */
     @DeleteMapping(path = "/game/{id}")
     public ResponseEntity<Game> delete(Game game) {
         log.info("Juego a borrar: {}", game);
@@ -67,6 +87,12 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
+    /**
+     * Representa el método PUT.
+     * @param game
+     * @param id
+     * @return la actualización del juego.
+     */
     @PutMapping(path = "/game/{id}")
     public ResponseEntity<Game> update(Game game, @PathVariable("id") Long id) {
         log.info("Juego a modificar: {}", game);
@@ -74,6 +100,12 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
+    /**
+     * Representa el método PATCH.
+     * @param game
+     * @param id
+     * @return la actualización del ganador.
+     */
     @PatchMapping(path="/game/winner/{id}")
     public ResponseEntity<Game> updateWinner(Game game, @PathVariable("id") Long id) {
         log.info("Modificar ganador: {}", game);
@@ -81,27 +113,31 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
+    /**
+     * Representa el método POST.
+     * @param user
+     * @param id
+     * @return la validación del ganador.
+     */
     @PostMapping(path="/game/bingo/{id}")
     public Response win(User user, @PathVariable("id") Long id) {
         log.info("Juego de jugador: {}", user);
         log.info("cardCheck: {}", user.getCardCheck());
         user.setIdGame(id);
 
-        ////revisar ganador
         ArrayList<Integer> cardCheck = user.getCardCheck();
         ArrayList<Integer> ballotout;
 
-        //ballotout = gameBallotService.ballotOut(game.getId());
         ballotout = ballotService.ballotOut(id);
         ballotout.add(0);
         int lines[][] = {
-                {0,1,2,3,4},{5,6,7,8,9},{10,11,12,13,14},{15,16,17,18,19},
-                {20,21,22,23,24}, {0,5,10,15,20},{1,6,11,16,21},{2,7,12,17,22},
-                {3,8,13,18,23},{4,9,14,19,24},{0,6,12,18,24},{4,8,12,16,20},{0,4,12,20,24}
+                {0,1,2,3,4}, {5,6,7,8,9}, {10,11,12,13,14}, {15,16,17,18,19}, {20,21,22,23,24},
+                {0,5,10,15,20}, {1,6,11,16,21}, {2,7,12,17,22}, {3,8,13,18,23}, {4,9,14,19,24},
+                {0,6,12,18,24}, {4,8,12,16,20},
+                {0,4,12,20,24}
         };
-
         log.info("balotas anunciadas: {}", ballotout);
-        ///de 0 a 4 horizontal, 5 a 9 verticales, 10 a 11 diagonales, 12 4 esquina
+
         boolean win = false;
         String lineWin = "";
         for(int i = 0; i < lines.length; i++){
@@ -143,15 +179,11 @@ public class GameController {
             gameService.updateWinner(id, game);
         }else{
             log.info("Jugador perdio: {}");
-            //userService.updateLoser(id,user);
         }
-
         response.dataGame.removeAll(response.dataGame);
         response.dataGame.add(win);
         response.dataGame.add(lineWin);
         response.dataGame.add(user);
-        ///fin logica revisar ganadar
         return response;
     }
-
 }

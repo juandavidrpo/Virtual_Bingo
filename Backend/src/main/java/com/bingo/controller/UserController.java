@@ -22,6 +22,12 @@ import java.util.ArrayList;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 
+/**
+ * Representa la clase del controlador de usuario.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class UserController {
 
     @Autowired
@@ -29,6 +35,10 @@ public class UserController {
 
     private Response response = new Response();
 
+    /**
+     * Representa el método GET.
+     * @return los jugadores.
+     */
     @GetMapping(path = "/users")
     public Response list() {
         try {
@@ -41,10 +51,14 @@ public class UserController {
         return response;
     }
 
+    /**
+     * Representa el método POST.
+     * @param user
+     * @return los datos del jugador creado.
+     */
     @PostMapping(path = "/user")
     public Response create(User user) {
 
-        ////////
         String idCarton = user.getIdGame() + user.getName();
         user.setCard(idCarton);
         ArrayList<Integer> cardUser = new ArrayList<>();
@@ -92,8 +106,6 @@ public class UserController {
         }
         log.info("Valores del carton: {}", cardUser);
         log.info("Valores del carton: {}", cardCheckUser);
-
-        //////////
         userService.save(user);
         response.dataGame.add(user);
         response.dataGame.add(cardUser);
@@ -105,6 +117,11 @@ public class UserController {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
+    /**
+     * Representa el método DELETE.
+     * @param user
+     * @return la eliminación de un jugador.
+     */
     @DeleteMapping(path = "/user/{id}")
     public ResponseEntity<User> delete(User user) {
         log.info("Usuario a borrar: {}", user);
@@ -112,18 +129,16 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Representa el método PUT.
+     * @param user
+     * @param id
+     * @return la actualización del jugador.
+     */
     @PutMapping(path = "/user/{id}")
     public ResponseEntity<User> update(@RequestBody User user, @PathVariable("id") Long id) {
         log.info("Usuario a modificar: {}", user);
         userService.update(id, user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
-/*    @PatchMapping(path="/user/deleted/{id}")
-    public ResponseEntity<User> updateWinner(User gamePlayer, @PathVariable("id") Long id) {
-        log.info("Juego a modificar ganador: {}", gamePlayer);
-        userService.updateLoser(id,gamePlayer);
-        return new ResponseEntity<>(gamePlayer, HttpStatus.OK);
-    }*/
-
 }

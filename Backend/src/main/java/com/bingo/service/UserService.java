@@ -10,9 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+/**
+ * Representa la clase usuario servicio.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class UserService implements IUserService {
 
-    @Autowired // para inyectar UserDao
+    /**
+     * Implementa los métodos de UserDao.
+     */
+    @Autowired
     private UserDao userDao;
 
     @Override
@@ -45,10 +54,4 @@ public class UserService implements IUserService {
     public Optional<User> findUser(User user) {
         return userDao.findById(user.getId());
     }
-
-/*    @Override
-    @Transactional
-    public void updateLoser(Long id, User user) {
-        userDao.updateLoser(id, user.getName());
-    }*/
 }

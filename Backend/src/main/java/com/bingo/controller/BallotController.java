@@ -22,6 +22,12 @@ import java.util.ArrayList;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 
+/**
+ * Representa la clase de balota controlador.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class BallotController {
 
     @Autowired
@@ -29,6 +35,10 @@ public class BallotController {
 
     private Response response = new Response();
 
+    /**
+     * Representa el método GET.
+     * @return todas las balotas.
+     */
     @GetMapping(path = "/ballots")
     public Response list() {
         try {
@@ -41,15 +51,25 @@ public class BallotController {
         return response;
     }
 
+    /**
+     * Representa el método para balotas aleatorias.
+     * @param min de tipo int
+     * @param max de tipo int
+     * @return un numero aleatorio.
+     */
     public static int random(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
+    /**
+     * Representa el método POST.
+     * @param ballot
+     * @return una balota.
+     */
     @PostMapping(path="/ballot")
     public Response create(Ballot ballot) {
         log.info("balota de Juego a crear: {}", ballot);
 
-        ///logica anunciar balota
         ArrayList<Integer> ballotout = new ArrayList<>();
         ArrayList<Integer> ballots = new ArrayList<>();
         ballotout = ballotService.ballotOut(ballot.getIdGame());
@@ -78,19 +98,14 @@ public class BallotController {
         }else{
             letter = "O";
         }
-
+    /**
+     * Retorna información por consola de la balota
+     * y luego la guarda.
+     */
         log.info("Balotas anunciadas: {}", ballotout);
         log.info("Balota total: {}", ballots);
         log.info("Nueva balota : {}",letter + newBallot);
-        ///fin logica anunciar balota
-
-        /**
-         * guardando información en la database
-         */
         ballotService.save(ballot);
-        /**
-         * guardando datos a enviar al front
-         */
         response.dataGame.add(ballot);
         response.dataGame.add(ballotout);
         response.dataGame.add(letter);
@@ -98,6 +113,11 @@ public class BallotController {
         return response;
     }
 
+    /**
+     * Representa el método DELETE.
+     * @param ballot
+     * @return el borrado de una balota.
+     */
     @DeleteMapping(path = "/ballot/{id}")
     public ResponseEntity<Ballot> delete(Ballot ballot) {
         log.info("Ballot a borrar: {}", ballot);
@@ -105,6 +125,12 @@ public class BallotController {
         return new ResponseEntity<>(ballot, HttpStatus.OK);
     }
 
+    /**
+     * Representa el método PUT.
+     * @param ballot
+     * @param id
+     * @return la actualización de la balota.
+     */
     @PutMapping(path = "/ballot/{id}")
     public ResponseEntity<Ballot> update(Ballot ballot, @PathVariable("id") Long id) {
         log.info("Usuario a modificar: {}", ballot);

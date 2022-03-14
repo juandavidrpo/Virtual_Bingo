@@ -15,6 +15,12 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "game")
+/**
+ * Representa la clase juego.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class Game implements Serializable {
 
     private static final long serialVersionUID = 1L;

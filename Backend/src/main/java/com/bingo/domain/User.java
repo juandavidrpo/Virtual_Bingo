@@ -16,6 +16,12 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "player")
 
+/**
+ * Representa la clase usuario.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ * @since 1.0.0
+ */
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

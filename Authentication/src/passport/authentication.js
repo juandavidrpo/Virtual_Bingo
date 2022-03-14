@@ -1,3 +1,9 @@
+/**
+ * Representa metodos requeridos para la autenticacíon
+ * usando la libreria passport.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ */
 const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;

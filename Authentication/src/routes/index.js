@@ -1,3 +1,8 @@
+/**
+ * Representa la configuración de las rutas.
+ * @version 1.0.0 2022-03-13
+ * @author Juan David Rojas Restrepo.
+ */
 const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router();

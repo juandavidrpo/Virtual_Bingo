@@ -29,7 +29,7 @@ a través del consumo de un API.
 
 ## Routes
 
-# Autenticación
+### Autenticación
 
 Ruta para la pagina de inicio:
 ```
@@ -56,7 +56,7 @@ http://localhost:3000/bingo
 ```
 ![bingo](https://user-images.githubusercontent.com/63930976/158111928-b9bf561d-e556-4e5f-864d-78c5d389cc7e.PNG)
 
-# Juego
+### Juego
 
 GET:
 Consultar los datos.

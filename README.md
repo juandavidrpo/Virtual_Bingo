@@ -29,6 +29,35 @@ a través del consumo de un API.
 
 ## Routes
 
+# Autenticación
+
+Ruta para la pagina de inicio:
+```
+http://localhost:3000/
+```
+![home](https://user-images.githubusercontent.com/63930976/158111771-6eb956dc-9b13-4ec8-9ce9-1de767eddc8e.PNG)
+
+Ruta para el registro:
+```
+http://localhost:3000/signup
+```
+![register](https://user-images.githubusercontent.com/63930976/158111908-f5e590d9-2d1f-46f0-adab-b2c4a4d1ff8b.PNG)
+
+
+Ruta para el login:
+```
+http://localhost:3000/signin
+```
+![login](https://user-images.githubusercontent.com/63930976/158111919-4dc43475-dd77-4da4-b448-935b071909e6.PNG)
+
+Ruta para la sala del juego:
+```
+http://localhost:3000/bingo
+```
+![bingo](https://user-images.githubusercontent.com/63930976/158111928-b9bf561d-e556-4e5f-864d-78c5d389cc7e.PNG)
+
+# Juego
+
 GET:
 Consultar los datos.
 ```
